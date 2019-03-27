@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html>
-<?php include_once './header.php'; ?>
+<?php include_once 'header.php'; ?>
 
 <body class="Profile">
 
