@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="loginbox">
-    <img src="../img/logo_camagru.png" class="logocam">
+    <img src="../assets/img/logo_camagru.png" class="logocam">
     <h1>Inscrivez-vous</h1>
     <form>
         <p>Nom d'utilisateur</p>
