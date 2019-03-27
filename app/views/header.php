@@ -15,10 +15,10 @@
         </label>
 
         <ul class="menu">
-            <a href="#">Galerie</a>
-            <a href="#">Se connecter</a>
-            <a href="#">S'inscrire</a>
-            <a href="#">Profile</a>
+            <a href="gallery.php">Galerie</a>
+            <a href="login.php">Se connecter</a>
+            <a href="register.php">S'inscrire</a>
+            <a href="profile.php">Profile</a>
             <a href="#">Déconnexion</a>
             <label for="chk" class="hide-menu-btn">
                 <i class="fas fa-times"></i>
