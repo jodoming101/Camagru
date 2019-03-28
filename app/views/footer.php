@@ -1,5 +1,5 @@
 <?php include_once 'header.php'; ?>
 
 <footer>
-    <p><i class="far fa-copyright"></i> jodoming @le-101 - 2019</p>
+    <p><i class="far fa-copyright"></i>     2019                     |                    jodoming@student.le-101.fr</p>
 </footer>
