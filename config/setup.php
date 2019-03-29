@@ -15,11 +15,12 @@ try {
 
     // sql create users table
     $sql = "CREATE TABLE IF NOT EXISTS users (
-    id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR (25) COLLATE utf8_general_ci NOT NULL UNIQUE KEY,
-    email VARCHAR (50) NOT NULL,
-    password VARCHAR (50) COLLATE utf8_general_ci NOT NULL,
-    verified BOOLEAN NULL
+    usr_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    usr_username TEXT (25) NOT NULL,
+    usr_email TEXT (50) NOT NULL,
+    usr_vfd INT (1) NOT NULL,
+    usr_pwd TEXT (25) NOT NULL,
+    usr_key TEXT NOT NULL 
     )";
 
     // use exec() because no results are returned

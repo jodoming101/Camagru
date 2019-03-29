@@ -9,15 +9,24 @@ class Database
 
     public function __construct()
     {
-        $this->_connection = new PDO('mysql:host=localhost:3306;dbname=Camagru;charset=utf8',
+        $this->_connection = new PDO('mysql:host=mysql:3306;dbname=Camagru;charset=utf8',
             'root', 'rootpass',
             array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     }
 
-    function insert_data ($query, $data) {
+    function insertData ($query, $data) {
         $request = $this->_connection->prepare($query);
         $request->execute($data);
         $request->closeCursor();
+    }
+
+    public function getData($query, $dataQuery)
+    {
+        $request = $this->_connection->prepare($query);
+        $request->execute($dataQuery);
+        $data = $request->fetch();
+        $request->closeCursor();
+        return ($data);
     }
 }
 
