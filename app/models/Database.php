@@ -4,7 +4,7 @@ class Database
 {
     // $query is the sql request
     // $data is the array where to look for the required data
-    protected $_connection;
+    public $_connection;
 
 
     public function __construct()
@@ -32,7 +32,7 @@ class Database
 
 abstract class Model
 {
-    protected $_database;
+    public $_database;
 
     public function __construct(Database $db)
     {

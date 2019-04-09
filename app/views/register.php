@@ -3,7 +3,7 @@
         <body>
         <div class="login-box">
             <h1>S'inscrire</h1>
-
+        <form method="POST" action="../controllers/registerCo.php">
             <div class="textbox">
                 <i class="fas fa-user"></i>
                 <input type="text" placeholder="Nom d'utilisateur" name="username" id="username">
@@ -23,9 +23,10 @@
                 <i class="fas fa-check-square"></i>
                 <input type="password" placeholder="Confirmation mot de passe" name="pwdconfirm"  id="pwdconfirm">
             </div>
-
-            <button onclick="" class="btn">S'inscrire</button>
+            <button type="submit" class="btn">S'inscrire</button>
+        </form>
         </div>
     </body>
     <?php include_once 'footer.php'; ?>
 </html>
+

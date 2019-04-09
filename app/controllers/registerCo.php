@@ -6,8 +6,7 @@ function check_username($username)
     $errors = array();
     if (empty($username)) {
         array_push($errors, 'username is empty.');
-    }
-    elseif (strlen($username) < 5 || strlen($username) > 20) {
+    } elseif (strlen($username) < 5 || strlen($username) > 20) {
         array_push($errors, 'username must be between 5 and 20 characters long.');
     }
     $db = new Database();
@@ -18,12 +17,12 @@ function check_username($username)
     return ($errors);
 }
 
-function check_email($email) {
+function check_email($email)
+{
     $errors = array();
     if (empty($email)) {
-        array_push($errors,'email is empty.');
-    }
-    elseif (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+        array_push($errors, 'email is empty.');
+    } elseif (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
         array_push($errors, 'invalid email format.');
     }
     $db = new Database();
@@ -39,8 +38,7 @@ function check_password($usrpwd, $confirmpwd)
     $errors = array();
     if (empty($usrpwd)) {
         array_push($errors, 'password is empty.');
-    }
-    else {
+    } else {
         if (strlen($usrpwd) < 8) {
             array_push($errors, 'Password too short!');
         }
@@ -54,7 +52,8 @@ function check_password($usrpwd, $confirmpwd)
     return ($errors);
 }
 
-function register() {
+function register()
+{
     $username = $_POST["username"];
     $email = $_POST["email"];
     $usrpwd = $_POST["usrpwd"];
@@ -74,10 +73,9 @@ function register() {
     if (empty($msg)) {
         $db = new Database();
         $user = new User($db);
-        $user->register($username, $email,$usrpwd);
+        $user->register($username, $email, $usrpwd);
         array_push($msg, 'User successfully created.');
-    }
-    else {
+    } else {
         var_dump($msg);
     }
 }
