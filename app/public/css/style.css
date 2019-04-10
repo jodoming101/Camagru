@@ -32,6 +32,7 @@ body {
     flex-wrap: wrap;
     float: right;
     line-height: 100px;
+    list-style-type: none;
 }
 
 .menu a {

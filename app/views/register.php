@@ -2,7 +2,7 @@
     <?php include_once 'header.php'; ?>
         <body>
         <div class="login-box">
-            <h1>S'inscrire</h1>
+            <h1>Inscription</h1>
         <form method="POST" action="../controllers/registerCo.php">
             <div class="textbox">
                 <i class="fas fa-user"></i>

@@ -42,8 +42,8 @@ function check_password($usrpwd, $confirmpwd)
         if (strlen($usrpwd) < 8) {
             array_push($errors, 'Password too short!');
         }
-        if (!preg_match("#[a-zA-Z][0-9]+#", $usrpwd)) {
-            array_push($errors, 'Password must include at least one letter and one digit!');
+        if (!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $usrpwd)) {
+            array_push($errors, 'Password must include at least a digit and a special character!');
         }
     }
     if ($usrpwd !== $confirmpwd) {
@@ -75,9 +75,10 @@ function register()
         $user = new User($db);
         $user->register($username, $email, $usrpwd);
         array_push($msg, 'User successfully created.');
-   } else {
         var_dump($msg);
-   }
+    } else {
+        var_dump($msg);
+    }
 }
 
 register();

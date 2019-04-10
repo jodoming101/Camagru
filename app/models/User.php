@@ -1,6 +1,6 @@
 <?php
 
-require ("Database.php");
+require("Database.php");
 include('../../config/database.php');
 
 class User extends Model
@@ -46,18 +46,24 @@ class User extends Model
         return ($email);
     }
 
-    public function register($username, $email, $password) {
+    public function register($username, $email, $password)
+    {
         $this->_database->insertData("INSERT INTO users(usr_username, usr_email, usr_pwd) VALUES(:username, :email, :password)",
-            array(":username" => $username, ":email" => $email, ":password" =>$password)
-            );
+            array(":username" => $username, ":email" => $email, ":password" => $password)
+        );
     }
 
-    public function password_verify () {
-
+    public function getPass($username)
+    {
+        $password = $this->_database->getData("SELECT usr_pwd FROM users WHERE usr_username = :username", array(":username" => $username))["password"];
+        return ($password);
     }
 
-    public function login () {
-
+    public function getIdInfo($username)
+    {
+        $return = $this->_database->getData("SELECT usr_id, usr_username, usr_email, usr_vfd, usr_pwd FROM users WHERE usr_username = :username", array(":username" => $username));
+        return ($return);
     }
+
 
 }
