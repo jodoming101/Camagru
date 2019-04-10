@@ -34,7 +34,6 @@ class User extends Model
 
     public function checkUsername($username)
     {
-        var_dump($this->_database);
         $username = $this->_database->getData("SELECT usr_username from users WHERE usr_username = :username",
             array(":username" => $username))["usr_username"];
         return ($username);
@@ -51,6 +50,14 @@ class User extends Model
         $this->_database->insertData("INSERT INTO users(usr_username, usr_email, usr_pwd) VALUES(:username, :email, :password)",
             array(":username" => $username, ":email" => $email, ":password" =>$password)
             );
+    }
+
+    public function password_verify () {
+
+    }
+
+    public function login () {
+
     }
 
 }

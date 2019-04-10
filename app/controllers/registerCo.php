@@ -54,8 +54,8 @@ function check_password($usrpwd, $confirmpwd)
 
 function register()
 {
-    $username = $_POST["username"];
-    $email = $_POST["email"];
+    $username = htmlspecialchars($_POST["username"], ENT_QUOTES, 'UTF-8');
+    $email = htmlspecialchars($_POST["email"], ENT_QUOTES, 'UTF-8');
     $usrpwd = $_POST["usrpwd"];
     $confirmpwd = $_POST["pwdconfirm"];
     $msg = array();
@@ -75,9 +75,9 @@ function register()
         $user = new User($db);
         $user->register($username, $email, $usrpwd);
         array_push($msg, 'User successfully created.');
-    } else {
+   } else {
         var_dump($msg);
-    }
+   }
 }
 
 register();
