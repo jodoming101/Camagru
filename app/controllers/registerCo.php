@@ -71,6 +71,7 @@ function register()
         array_push($msg, $errMsg);
     }
     if (empty($msg)) {
+
         $db = new Database();
         $user = new User($db);
         $user->register($username, $email, $usrpwd);
