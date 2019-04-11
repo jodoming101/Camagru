@@ -21,7 +21,7 @@
 
             <div class="textbox">
                 <i class="fas fa-check-square"></i>
-                <input type="password" placeholder="Confirmation mot de passe" name="pwdconfirm"  id="pwdconfirm">
+                <input type="password" placeholder="Confirmation mot de passe" name="confirmpwd"  id="confirmpwd">
             </div>
             <button type="submit" class="btn">S'inscrire</button>
         </form>

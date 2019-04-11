@@ -14,19 +14,31 @@ class Database
             array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     }
 
-    function insertData ($query, $data) {
+    public function insertData ($query, $data) {
         $request = $this->_connection->prepare($query);
         $request->execute($data);
         $request->closeCursor();
     }
 
-    public function getData($query, $dataQuery)
+    public function getData($query, $data)
     {
         $request = $this->_connection->prepare($query);
-        $request->execute($dataQuery);
+        $request->execute($data);
         $data = $request->fetch();
         $request->closeCursor();
         return ($data);
+    }
+
+    public function getManyData($query, $data)
+    {
+        $array = [];
+        $request = $this->_connection->prepare($query);
+        $request->execute($data);
+        while ($data = $request->fetch()) {
+            array_push($array, $data);
+        }
+        $request->closeCursor();
+        return ($array);
     }
 }
 

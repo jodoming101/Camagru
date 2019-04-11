@@ -57,9 +57,12 @@ function register()
     $username = htmlspecialchars($_POST["username"], ENT_QUOTES, 'UTF-8');
     $email = htmlspecialchars($_POST["email"], ENT_QUOTES, 'UTF-8');
     $usrpwd = $_POST["usrpwd"];
-    $confirmpwd = $_POST["pwdconfirm"];
+    $confirmpwd = $_POST["confirmpwd"];
     $msg = array();
-    $errMsg = array();
+    $errMsg = NULL;
+    $key = NULL;
+    $hash = NULL;
+
 
     if ($errMsg = check_username($username)) {
         array_push($msg, $errMsg);
@@ -70,11 +73,15 @@ function register()
     if ($errMsg = check_password($usrpwd, $confirmpwd)) {
         array_push($msg, $errMsg);
     }
-    if (empty($msg)) {
 
+    if (empty($msg)) {
+        $key = md5(microtime(TRUE)*100000);
+        var_dump($key);
+        $hash = password_hash($usrpwd, PASSWORD_BCRYPT);
         $db = new Database();
         $user = new User($db);
-        $user->register($username, $email, $usrpwd);
+        $user->register($username, $email, $hash, $key);
+        confirmRegistration($username, $email, $key);
         array_push($msg, 'User successfully created.');
         var_dump($msg);
     } else {
@@ -83,3 +90,19 @@ function register()
 }
 
 register();
+
+// Account activation email - needs activation key
+
+function confirmRegistration ($username, $email, $key)
+{
+    $subject = "Camagru | Activer votre compte";
+    $header = "From: no_reply@camagru.com";
+    $message = 'Bienvenue sur Camagru ' . $username . '!
+    Pour activer votre compte, veuillez cliquer sur le lien ci dessous
+    ou le copier puis le coller dans la barre d\'addresse de votre navigateur.
+    http://localhost:8008/models/index.php?login=' . urlencode($username) . '&key=' . urlencode($key) . '
+    ---------------
+    Ce mail est généré automatiquement. Merci de ne pas y répondre.';
+    mail($email, $subject, $message, $header);
+
+}
