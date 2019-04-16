@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <head>
     <meta charset="utf-8">
     <title>Camagru</title>
@@ -19,33 +21,31 @@
             <i class="far fa-images"></i>
             <a href="gallery.php">Galerie</a>
         </li>
-        <?php if (isset($_SESSION["username"])) { ?>
-            <li class="h_snap">
+        <?php if (isset($_SESSION["username"])) {
+        echo '<li class="h_snap">
                 <i class="fas fa-camera-retro"></i>
-                <a href="index.php">Snap</a>
-            </li>
-            <li class="h_profile">
+                <a href="snap.php">Snap</a>
+              </li>
+              <li class="h_profile">
                 <i class="fas fa-user"></i>
                 <a href="profile.php">Profile</a>
-            </li>
-        <?php } ?>
-        <?php if (isset($_SESSION["username"]))
-            echo '<li class=\"h_signout\">
-            <i class=\"fas fa-sign-out-alt\"></i>
-            <a href=\"#\">Déconnexion</a>
-        </li>';
+              </li>
+              <li class=\"h_signout\">
+                <i class="fas fa-sign-out-alt"></i>
+                <a href="../controllers/logoutCo.php">Déconnexion</a>
+              </li>';
+        }
         else {
             echo '<li class="h_signin">
-            <i class="fas fa-sign-in-alt"></i>
-            <a href="login.php">Connexion</a>
-        </li>';
-            echo '<li class="h_signup">
-            <i class="fas fa-user-plus"></i>
-            <a href="register.php">Inscription</a>
-        </li>';
+                <i class="fas fa-sign-in-alt"></i>
+                <a href="login.php">Connexion</a>
+            </li>
+            <li class="h_signup">
+                <i class="fas fa-user-plus"></i>
+                <a href="register.php">Inscription</a>
+            </li>';
         }
         ?>
-
     </ul>
     <label for="chk" class="hide-menu-btn">
         <i class="fas fa-times"></i>

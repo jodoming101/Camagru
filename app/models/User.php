@@ -33,7 +33,7 @@ class User extends Model
     {
         $this->_database->insertData("INSERT INTO users(usr_username, usr_email, usr_pwd, usr_key)
             VALUES(:username, :email, :password, :key)", array(":username" => $username, ":email" => $email,
-                 ":password" => $hash, ":key" => $key)
+                ":password" => $hash, ":key" => $key)
         );
     }
 
@@ -44,16 +44,17 @@ class User extends Model
         return ($data);
     }
 
-    public function getConfirmationKey ($username)
-            {
-                $confirmationKey = $this->_database->getData("SELECT usr_key FROM users WHERE usr_username = :username",
-                    array(":username" => $username))["usr_key"];
-                return ($confirmationKey);
-            }
+    public function getConfirmationKey($username)
+    {
+        $confirmationKey = $this->_database->getData("SELECT usr_key FROM users WHERE usr_username = :username",
+            array(":username" => $username))["usr_key"];
+        return ($confirmationKey);
+    }
 
     public function confirmAccount($username)
     {
-        $this->_database->insertData("UPDATE users SET usr_vfd = 1 WHERE usr_username = :username", array(":username" => $username));
+        $this->_database->insertData("UPDATE users SET usr_vfd = 1 WHERE usr_username = :username",
+            array(":username" => $username));
 
     }
 }

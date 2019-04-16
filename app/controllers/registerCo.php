@@ -76,7 +76,6 @@ function register()
 
     if (empty($msg)) {
         $key = md5(microtime(TRUE)*100000);
-        var_dump($key);
         $hash = password_hash($usrpwd, PASSWORD_BCRYPT);
         $db = new Database();
         $user = new User($db);
@@ -91,6 +90,8 @@ function register()
 
 register();
 
+header("Location: ../views/login.php");
+
 // Account activation email - needs activation key
 
 function emailActivation ($username, $email, $key)
@@ -100,28 +101,8 @@ function emailActivation ($username, $email, $key)
     $message = 'Bienvenue sur Camagru ' . $username . '!
     Pour activer votre compte, veuillez cliquer sur le lien ci dessous
     ou le copier puis le coller dans la barre d\'addresse de votre navigateur.
-    http://localhost:8008/models/activation.php?login=' . urlencode($username) . '&key=' . urlencode($key) . '
+    http://localhost:8008/Camagru/app/models/activation.php?username=' . urlencode($username) . '&key=' . urlencode($key) . '
     ---------------
     Ce mail est généré automatiquement. Merci de ne pas y répondre.';
     mail($email, $subject, $message, $header);
-}
-
-function accountActivation()
-{
-    $username = $_POST["username"];
-    $key = $_POST["key"];
-    $msg = array();
-    if (!empty($username) && !empty($key)) {
-        $db = new Database();
-        $user = new User($db);
-        $databaseKey = $user->getConfirmationKey($username);
-        if ($databaseKey === $key) {
-            $user->confirmAccount($username);
-            array_push($messages, "Your account has been activated.");
-            var_dump($msg);
-        } else {
-            array_push($messages, "Your activation key is not the one that we sent you.");
-            var_dump($msg);
-        }
-    }
 }
