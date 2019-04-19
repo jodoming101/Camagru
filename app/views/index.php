@@ -1,7 +1,6 @@
 <?php
     include_once 'header.php';
     include_once 'footer.php';
-    header("Location: gallery.php");
 ?>
 
 

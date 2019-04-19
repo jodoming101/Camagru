@@ -55,6 +55,5 @@ class User extends Model
     {
         $this->_database->insertData("UPDATE users SET usr_vfd = 1 WHERE usr_username = :username",
             array(":username" => $username));
-
     }
 }

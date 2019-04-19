@@ -12,27 +12,32 @@ if ((isset($username) && !empty($username)) &&
     $user = new User($db);
     $data = $user->getIdInfo($username);
     if (empty($data))
-        echo "Le nom d'utilisateur est inconnu.";
+        echo "<script type='text/javascript'> confirm('Le nom d\'utilisateur est inconnu.');
+                       window.location.replace('../views/login.php')</script>";
     else if (password_verify($password, $data['usr_pwd']) == true) {
         if ($data['usr_vfd'] == 1)
         {
             $username = $data["usr_username"];
             $_SESSION["username"] = $username;
-            $msg = "Bienvenue " . $data["usr_username"] . " !";
-            echo "<script> alert('$msg');
-                       window.location.replace('../views/snap.php');
-             </script>";
+            $msg = "Bienvenue " . $_SESSION["username"] . " !";
+            echo "<script type='text/javascript'> confirm('$msg');
+                       window.location.replace('../views/snap.php')</script>";
         }
         else {
-            echo "Votre compte n'a pas encore été activé. Merci de vérifier votre boîte mail.";
+            echo "<script type='text/javascript'> confirm('Votre compte n\'a pas encore été activé.' +
+                 '\\r\\nMerci de vérifier votre boîte mail.');
+                       window.location.replace('../views/login.php')</script>";
         }
     } else
-        echo 'Le mot de passe est incorrect.';
+        echo "<script type='text/javascript'> confirm('Le mot de passe est incorrect.');
+                       window.location.replace('../views/login.php')</script>";
     } else {
     if (!isset($username) || empty($username)) {
-        echo "Le nom d'utilisateur est inconnu ou absent.";
+        echo "<script type='text/javascript'> confirm('Le nom d\'utilisateur est inconnu ou absent.');
+                       window.location.replace('../views/login.php')</script>";
     }
     if (!isset($password) || empty($password)) {
-        echo "Merci de compléter le champ correspondant au Mot de passe.";
+        echo "<script type='text/javascript'> confirm('Merci de compléter le champ correspondant au Mot de passe.');
+                       window.location.replace('../views/login.php')</script>";
     }
 }

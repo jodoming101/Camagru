@@ -25,5 +25,3 @@ window.onload = function() {
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     });
 };
-
-// A quoi sert la variable xhr?

@@ -6,7 +6,7 @@ function check_username($username)
     $errors = array();
     if (empty($username)) {
         array_push($errors, 'Le champ Utilisateur est vide.');
-    } elseif (strlen($username) < 3 || strlen($username) > 20) {
+    } elseif (strlen($username) < 5 || strlen($username) > 20) {
         array_push($errors, 'Le nom d\'utilisateur doit contenir entre 5 and 20 caractères.');
     }
     $db = new Database();
@@ -81,16 +81,15 @@ function register()
         $user = new User($db);
         $user->register($username, $email, $hash, $key);
         emailActivation($username, $email, $key);
-        array_push($msg, 'Compte créé avec succès.');
-        var_dump($msg);
+        $msg = "Votre compte a été créé avec succès.\\r\\nUn lien d\'activation vient de vous être envoyé.";
+        echo "<script>alert('$msg');
+                      window.location.replace('../views/login.php')</script>";
     } else {
-        var_dump($msg);
+        echo "<script> alert('$msg')</script>";
     }
 }
 
 register();
-
-header("Location: ../views/login.php");
 
 // Account activation email - needs activation key
 

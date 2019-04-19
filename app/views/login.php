@@ -1,5 +1,6 @@
-<html>
-<?php include_once 'header.php'; ?>
+<?php include_once 'header.php';
+
+?>
 <body>
 <div class="login-box">
     <h1>Connexion</h1>
