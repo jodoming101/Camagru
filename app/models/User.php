@@ -56,4 +56,23 @@ class User extends Model
         $this->_database->insertData("UPDATE users SET usr_vfd = 1 WHERE usr_username = :username",
             array(":username" => $username));
     }
+
+    public function updatePassword($username, $hash)
+    {
+        $this->_database->insertData("UPDATE users SET usr_pwd = :hash WHERE usr_username = :username",
+            array(":hash" => $hash, ":username" => $username));
+    }
+
+    public function updateEmail($username, $email)
+    {
+        $this->_database->insertData("UPDATE users SET usr_email = :email WHERE usr_username = :username",
+            array(":email" => $email, ":username" => $username));
+    }
+
+    public function updateUsername($username, $oldUsername)
+    {
+        $this->_database->insertData("UPDATE users SET usr_username = :new WHERE usr_username = :old",
+            array(":old" => $oldUsername, ":new" => $username));
+        $_SESSION["username"] = $username;
+    }
 }

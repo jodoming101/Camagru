@@ -26,7 +26,7 @@
         <div class="textbox">
             <i class="fas fa-check-square"></i>
             <label for="newpass" class="profile-label">Confirmer le mot de passe</label>
-            <input type="text" placeholder="Confirmer le mot de passe" type="text">
+            <input type="text" placeholder="Confirmer le mot de passe" name="">
         </div>
 
         <button onclick="changeinfo()" class="btn">Changer</button>

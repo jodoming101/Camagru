@@ -43,6 +43,13 @@ body {
     transition: 0.4s;
 }
 
+ a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0 10px;
+    transition: 0.4s;
+}
+
 .show-menu-btn, .hide-menu-btn {
     transition: 0.4s;
     font-size: 30px;

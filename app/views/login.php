@@ -15,6 +15,8 @@
             <input type="password" placeholder="Mot de passe" name="password" id="password">
         </div>
 
+        <a href="lostpwd.php">Mot de passe oublié ?</a>
+
         <button type="submit" class="btn">Se connecter</button>
     </form>
 </div>
