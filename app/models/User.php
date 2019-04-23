@@ -12,8 +12,6 @@ class User extends Model
     public $data = NULL;
     public $hash = NULL;
     public $key = NULL;
-    public $error;
-
 
     public function checkUsername($username)
     {
@@ -25,6 +23,13 @@ class User extends Model
     public function checkMail($email)
     {
         $email = $this->_database->getData("SELECT usr_email from users WHERE usr_email = :email",
+            array(":email" => $email))["usr_email"];
+        return ($email);
+    }
+
+    public function checkMailforpwd($email)
+    {
+        $email = $this->_database->getData("SELECT usr_email from users WHERE usr_username = :email",
             array(":email" => $email))["usr_email"];
         return ($email);
     }
@@ -57,7 +62,7 @@ class User extends Model
             array(":username" => $username));
     }
 
-    public function updatePassword($username, $hash)
+    public function updatePwd($username, $hash)
     {
         $this->_database->insertData("UPDATE users SET usr_pwd = :hash WHERE usr_username = :username",
             array(":hash" => $hash, ":username" => $username));

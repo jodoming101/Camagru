@@ -36,14 +36,13 @@ body {
     list-style-type: none;
 }
 
-.menu a {
-    color: #ffffff;
+#forgot {
+    color: rgba(107,107,107,1);
     text-decoration: none;
-    padding: 0 10px;
-    transition: 0.4s;
+    font-size: smaller;
 }
 
- a {
+.menu a {
     color: #ffffff;
     text-decoration: none;
     padding: 0 10px;
