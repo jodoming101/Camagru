@@ -5,107 +5,53 @@
  * Date: 2019-04-23
  * Time: 11:07
  */
-
+session_start();
 require("../models/User.php");
 
-function updateProfile()
-{
-    $dataBase = new Database();
-    $user = new User($dataBase);
-    $messages = array();
-    $response = array();
-    if (isset($_SESSION["username"])) {
-        if (!empty($_POST["username"])) {
-            $username = htmlspecialchars($_POST["username"], ENT_QUOTES, 'UTF-8');
-            if (strlen($username) < 3) {
-                array_push($messages, "Username should contains at least 3 characters.");
-                $response["success"] = false;
-            } else {
-                $verifUsername = $user->checkUsername($username);
-                if (!empty($verifUsername)) {
-                    array_push($messages, "Username is already taken.");
-                    $response["success"] = false;
-                } else {
-                    $user->updateUsername($username, $_SESSION["username"]);
-                    $_SESSION["username"] = $username;
-                    array_push($messages, "Username has been updated.");
-                    $response["success"] = true;
-                }
-            }
-        }
-        if (!empty($_POST["mail"])) {
-            $mail = htmlspecialchars($_POST["mail"], ENT_QUOTES, 'UTF-8');
-            if (filter_var($mail, FILTER_VALIDATE_EMAIL) === false) {
-                array_push($messages, "Email format is invalid.");
-                $response["success"] = false;
-            } else {
-                $verifMail = $user->checkMail($mail);
-                if (!empty($verifMail)) {
-                    array_push($messages, "Email is already taken.");
-                    $response["success"] = false;
-                } else {
-                    $user->updateEmail($_SESSION["username"], $mail);
-                    $_SESSION["mail"] = $mail;
-                    array_push($messages, "Email has been updated.");
-                    $response["success"] = true;
-                }
-            }
-        }
-        if (!empty($_POST["password"])) {
-            if (preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $_POST["password"]) && strlen($_POST["password"]) >= 8) {
-                $hash = password_hash($_POST["password"], PASSWORD_BCRYPT);
-                $user->updatePassword($_SESSION["username"], $hash);
-                array_push($messages, "Password has been updated.");
-                $response["success"] = true;
-            } else {
-                array_push($messages, "Password is not strong enough.");
-                array_push($messages, "It should contains 8 characters, an uppercase, a lowercase, a special character and a digit.");
-                $response["success"] = false;
-            }
-        }
-        if (empty($_POST["username"]) && empty($_POST["mail"]) && empty($_POST["password"])) {
-            array_push($messages, "Field is empty.");
-            $response["success"] = false;
-        }
-    } else {
-        array_push($messages, "You are not authentificated.");
-        array_push($response, array("success" => false));
-    }
-    $response["messages"] = $messages;
-    $json = json_encode($response);
-    echo $json;
-}
 
-function resetPassword()
-{
-    $username = $_POST["username"];
-    $dataBase = new Database();
-    $user = new User($dataBase);
-    $messages = array();
-    $response = array();
-    if (!empty($username)) {
-        $verifUsername = $user->checkUsername($username);
-        if (!empty($verifUsername)) {
-            $password = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 32);;
-            $hash = password_hash($password, PASSWORD_BCRYPT);
-            $mail = $user->getMail($username);
-            $user->updatePassword($username, $hash);
-            $message = "Your new password is " . $password . ". Don't forget to update it.";
-            $subject = "Password reset - Camagru";
-            mail($mail, $subject, $message);
-            array_push($messages, "An email has been sent with your new password");
-            $response["success"] = true;
+$db = new Database();
+$user = new User($db);
 
+if (isset($_SESSION["username"])) {
+    if (!empty($_POST["nw_username"])) {
+        $username = htmlspecialchars($_POST["nw_username"], ENT_QUOTES, 'UTF-8');
+        if (strlen($username) < 5 || strlen($username) > 20) {
+            echo "<script>alert('Le nom d\'utilisateur doit contenir entre 5 and 20 caractères.')</script>";
+            echo "<script>window.location.replace('../views/profile.php')</script>";
         } else {
-            array_push($messages, "The username that you entered is not in our database.");
-            $response["success"] = false;
+            $checkUsername = $user->checkUsername($username);
+            if (!empty($checkUsername)) {
+                echo "<script>alert('Ce nom d\'utilisateur n\'est pas disponible.')</script>";
+                echo "<script>window.location.replace('../views/profile.php')</script>";
+            } else {
+                $user->updateUsername($username, $_SESSION["username"]);
+                $_SESSION["username"] = $username;
+                echo "<script>alert('Le nom d\'utilisateur a bien été remplacé.')</script>";
+            }
         }
-
-    } else {
-        array_push($messages, "Username field is empty.");
-        $response["success"] = false;
     }
-    $response["messages"] = $messages;
-    $json = json_encode($response);
-    echo $json;
+    if (!empty($_POST["nw_email"])) {
+        $nw_email = htmlspecialchars($_POST["nw_email"], ENT_QUOTES, 'UTF-8');
+        $verifMail = $user->checkMailforpwd($nw_email);
+        if (!empty($verifMail)) {
+            echo "<script>alert('Cet email est déjà utilisé.')</script>";
+            echo "<script>window.location.replace('../views/profile.php')</script>";
+        } else {
+            $user->updateEmail($_SESSION["username"], $nw_email);
+            $_SESSION["nw_email"] = $nw_email;
+            echo "<script>alert('Votre email a été mis à jour.')</script>";
+        }
+    }
+    if (!empty($_POST["nw_pwd"])) {
+        if (preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $_POST["nw_pwd"])
+            && strlen($_POST["nw_pwd"]) >= 8) {
+            $hash = password_hash($_POST["nw_pwd"], PASSWORD_BCRYPT);
+            $user->updatePwd($_SESSION["username"], $hash);
+            echo "<script>alert('Votre mot de passe a été mis à jour.')</script>";
+        } else {
+            echo "<script>alert('Le mot de passe doit comporter au moins 8 caractères, une majuscule, un caractère spécial et un chiffre.')</script>";
+            echo "<script>window.location.replace('../views/profile.php')</script>";
+        }
+    }
+    echo "<script>window.location.replace('../controllers/logoutCo.php')</script>";
 }

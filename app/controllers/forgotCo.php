@@ -21,7 +21,7 @@ if (!empty($username)) {
         $user->updatePwd($username, $hash);
         $subject = "Camagru | Nouveau Mot de Passe";
         $header = "From: no_reply@camagru.com";
-        $message = 'Voici votre nouveau mot de passe : ' . $newpwd . '. N\'oubliez pas de le modifier une fois connecté. \\r\\n
+        $message = 'Voici votre nouveau mot de passe : ' . $newpwd . '. N\'oubliez pas de le modifier une fois connecté.
     
                     ---------------
                     Ce mail est généré automatiquement. Merci de ne pas y répondre.';

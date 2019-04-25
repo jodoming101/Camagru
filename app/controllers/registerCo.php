@@ -4,50 +4,49 @@ require("../models/User.php");
 function check_username($username)
 {
     $errors = array();
-    if (empty($username)) {
-        array_push($errors, 'Le champ Utilisateur est vide.');
-    } elseif (strlen($username) < 5 || strlen($username) > 20) {
-        array_push($errors, 'Le nom d\'utilisateur doit contenir entre 5 and 20 caractères.');
+    if (empty($username) || strlen($username) < 5 || strlen($username) > 20) {
+        array_push($errors, 1);
+        echo "<script>alert('Le nom d\'utilisateur doit contenir entre 5 and 20 caractères.')</script>";
+        echo "<script>window.location.replace('../views/register.php')</script>";
     }
     $db = new Database();
     $user = new User($db);
     $return = $user->checkUsername($username);
-    if ($return)
-        array_push($errors, 'Ce nom d\'utilisateur est pris.');
+    if ($return) {
+        array_push($errors, 1);
+        echo "<script>alert('Ce nom d\'utilisateur n\'est pas disponible.')</script>";
+        echo "<script>window.location.replace('../views/register.php')</script>";
+    }
     return ($errors);
 }
 
 function check_email($email)
 {
     $errors = array();
-    if (empty($email)) {
-        array_push($errors, 'Le champ email est vide.');
-    } elseif (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-        array_push($errors, 'Format d\'email invalide');
-    }
     $db = new Database();
     $user = new User($db);
     $return = $user->checkMail($email);
-    if ($return)
-        array_push($errors, 'Cet email est déjà enregistré.');
+    if ($return) {
+        echo "<script>alert('Cet email est déjà utilisé.')</script>";
+        echo "<script>window.location.replace('../views/register.php')</script>";
+        array_push($errors, 1);
+    }
     return ($errors);
 }
 
 function check_password($usrpwd, $confirmpwd)
 {
     $errors = array();
-    if (empty($usrpwd)) {
-        array_push($errors, 'Le champ mot de passe est vide.');
-    } else {
-        if (strlen($usrpwd) < 8) {
-            array_push($errors, 'Le mot de passe choisi est trop court.');
-        }
-        if (!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $usrpwd)) {
-            array_push($errors, 'Le mot de passe doit inclure au moins une majuscule, un caractère spécial et un chiffre.');
-        }
+    if (empty($usrpwd) || (strlen($usrpwd) < 8 && !preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $usrpwd))) {
+            array_push($errors, 1);
+            echo "<script> alert('Le mot de passe doit inclure au moins 8 caractères, une majuscule, un caractère spécial et un chiffre.')</script>";
+            echo "<script>window.location.replace('../views/register.php')</script>";
     }
     if ($usrpwd !== $confirmpwd) {
-        array_push($errors, "Les mots de passe ne correspondent pas.");
+        array_push($errors, 1);
+        $errors =  "Les mots de passe ne correspondent pas.";
+        echo "<script> alert('Les mots de passe ne correspondent pas.')</script>";
+        echo "<script>window.location.replace('../views/register.php')</script>";
     }
     return ($errors);
 }
@@ -81,11 +80,9 @@ function register()
         $user = new User($db);
         $user->register($username, $email, $hash, $key);
         emailActivation($username, $email, $key);
-        $msg = "Votre compte a été créé avec succès.\\r\\nUn lien d\'activation vient de vous être envoyé.";
-        echo "<script>alert('$msg');
-                      window.location.replace('../views/login.php')</script>";
-    } else {
-        echo "<script> alert('$msg')</script>";
+        echo "<script>alert('Votre compte a été créé avec succès. ' +
+               'Un lien d\'activation vient de vous être envoyé.');
+               window.location.replace('../views/login.php')</script>";
     }
 }
 

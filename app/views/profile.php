@@ -1,35 +1,30 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="fr">
     <?php include_once 'header.php'; ?>
 
     <div class="profile-box">
-        <h2>Profile</h2>
-
+        <h2><?php echo "Profile de " .$_SESSION['username']; ?></h2>
+    <form method="POST" action="../controllers/profileCo.php">
         <div class="textbox">
             <i class="fas fa-user"></i>
             <label for="username" class="profile-label">Nom d'utilisateur</label>
-            <input type="text" placeholder="Nom d'utilisateur" name="" required="required">
+            <input type="text" placeholder="Nouveau nom d'utilisateur" name="nw_username">
         </div>
         <div class="textbox">
             <i class="fas fa-envelope"></i>
             <label for="email" class="profile-label">Email</label>
-            <input type="email" placeholder="Email" name="" required="required">
+            <input type="email" placeholder="Nouvelle adresse email" name="nw_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
         </div>
 
         <div class="textbox">
             <i class="fas fa-lock"></i>
-            <label for="newpass" class="profile-label">Nouveau mot de passe</label>
-            <input type="text" placeholder="Nouveau mot de passe" name="">
+            <label for="newpass" class="profile-label">Mot de passe</label>
+            <input type="password" placeholder="Nouveau mot de passe" name="nw_pwd">
         </div>
 
-        <div class="textbox">
-            <i class="fas fa-check-square"></i>
-            <label for="newpass" class="profile-label">Confirmer le mot de passe</label>
-            <input type="text" placeholder="Confirmer le mot de passe" name="">
-        </div>
-
-        <button onclick="changeinfo()" class="btn">Changer</button>
+        <button type="submit" class="btn">Changer</button>
+    </form>
     </div>
     <?php include_once 'footer.php'; ?>
 </html>
