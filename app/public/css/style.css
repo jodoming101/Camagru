@@ -222,14 +222,17 @@ body {
 }
 
 #video {
-    float: left;
-    margin-top: 15vh;
-    width: 21vw;
-    height: 31vh;
-    min-width: 490px;
-    min-height: 365px;
+    width: 100%;
     border: 1px solid #1186CC;
     box-shadow: 7px 7px 10px -5px rgba(107,107,107,1);
+}
+
+#video-div{
+    padding-top: 150px;
+    width: 640px;
+    height: 480px;
+    position: relative;
+    float: left;
 }
 
 #image {
@@ -285,4 +288,11 @@ footer {
 script {
     text-align: center;
     font-family: 'Lobster Two', cursive;
+}
+
+#selected_filter{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 500;
 }

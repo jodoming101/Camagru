@@ -7,7 +7,6 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../public/css/style.css">
-    <script src="../js/webcam.js"></script>
     <title>Camagru - Snap</title>
 </head>
 
@@ -19,10 +18,10 @@
     <div class="main_snap">
 
         <aside id="filters">
-            <img src="../assets/img/beard.png" class="cam_filters" alt="filtre">
-            <img src="../assets/img/dalladallabill.png" class="cam_filters" alt="filtre">
-            <img src="../assets/img/easterbunny.png" class="cam_filters" alt="filtre">
-            <img src="../assets/img/geisha.png" class="cam_filters" alt="filtre">
+            <img src="../assets/img/filters/beard.png" class="cam_filters" alt="filtre" onclick="addIcon(this)">
+            <img src="../assets/img/filters/dalladallabill.png" class="cam_filters" alt="filtre" onclick="addIcon(this)">
+            <img src="../assets/img/filters/blunt.png" class="cam_filters" alt="filtre" onclick="addIcon(this)">
+            <img src="../assets/img/filters/geisha.png" class="cam_filters" alt="filtre" onclick="addIcon(this)">
         </aside>
 
         <div class="montage" id="montage">
@@ -40,10 +39,11 @@
         <aside class="thumbnails" id="thumbnails">
 
         </aside>
-
+        <div hidden id="hidden"></div>
     </div>
 
 </section>
+<script src="../js/webcam.js"></script>
 </body>
 </html>
 
