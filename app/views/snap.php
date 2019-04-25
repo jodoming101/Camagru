@@ -30,7 +30,7 @@
                 <video autoplay id="video"></video>
                 <button type="submit" class="btn2" id="snap">Prendre la photo</button>
             </div>
-            <div class="save-div">
+            <div id="save-div">
                 <canvas class="canvas" id="image"></canvas>
                 <button type="submit" class="btn2" id="save">Sauvegarde</button>
             </div>

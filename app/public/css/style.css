@@ -207,8 +207,10 @@ body {
 }
 
 .cam_filters {
-    width: 7.75vw;
-    height: 8.2vw;
+    /*width: 7.75vw;*/
+    /*height: 8.2vw;*/
+    width: 80px;
+    height: 95px;
     max-height: 155px;
     max-width: 146px;
     margin: 1.4vw 1vw 1.6vw 1vw;
@@ -235,13 +237,16 @@ body {
     float: left;
 }
 
-#image {
+#save-div {
     float: right;
-    margin-top: 15vh;
-    width: 21vw;
-    height: 31vh;
-    min-width: 490px;
-    min-height: 365px;
+    /*margin-top: 15vh;*/
+    /*width: 21vw;*/
+    /*height: 31vh;*/
+    /*min-width: 640px;*/
+    /*min-height: 480px;*/
+    padding-top: 150px;
+    width: 640px;
+    height: 480px;
     border: 1px solid #1186CC;
     box-shadow: 7px 7px 10px -5px rgba(107,107,107,1);
 }
@@ -254,7 +259,7 @@ body {
     padding: 5px;
     font-size: 0.65vw;
     cursor: pointer;
-    margin: 50vh 0.5vw;
+    margin: 70vh 0.5vw;
 }
 
 #snap:hover, #save:hover {
@@ -265,7 +270,7 @@ body {
     padding: 5px;
     font-size: 0.65vw;
     cursor: pointer;
-    margin: 50vh 0.5vw;
+    margin: 70vh 0.5vw;
 }
 
 footer {
