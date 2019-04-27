@@ -16,6 +16,7 @@
         </div>
 
         <a href="forgotPwd.php" id="forgot">Mot de passe oublié ?</a>
+        <a href="register.php" id="register">Pas encore inscrit ?</a>
 
         <button type="submit" class="btn">Se connecter</button>
     </form>

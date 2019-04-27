@@ -36,7 +36,7 @@ body {
     list-style-type: none;
 }
 
-#forgot {
+#forgot, #register, #login {
     color: rgba(107,107,107,1);
     text-decoration: none;
     font-size: smaller;
@@ -195,20 +195,18 @@ body {
 
 #filters {
     flex: 0 0 auto;
-    background-color: rgba(17, 134, 204, 0.7);
+    background-color: rgba(17, 134, 204, 0.5);
     margin-top: 5vh;
     margin-left: 1vw;
-    width: 10vw;
-    height: 45vw;
-    max-width: 200px;
-    max-height: 890px;
+    width: 7vw;
+    height: 70vh;
+    max-width: 162px;
+    max-height: 688px;
     border-radius: 5px;
     box-shadow: 7px 7px 10px -5px rgba(107,107,107,1);
 }
 
 .cam_filters {
-    /*width: 7.75vw;*/
-    /*height: 8.2vw;*/
     width: 80px;
     height: 95px;
     max-height: 155px;
@@ -218,40 +216,69 @@ body {
 }
 
 .montage {
-    display: flex;
-    flex-direction: row;
+    /*display: inline-block;*/
+    position: relative;
+    width: 80%;
     margin: 0 auto;
 }
 
-#video {
-    width: 100%;
+.mont {
+    position: relative;
+    width: 640px;
+    height: 480px;
+}
+
+#photos {
+    /*position: relative;*/
+}
+
+#filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#video, #image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 640px;
+    height: 480px;
     border: 1px solid #1186CC;
     box-shadow: 7px 7px 10px -5px rgba(107,107,107,1);
 }
 
-#video-div{
+#canvas-vid {
+    display: none;
+}
+
+#video-div {
+    display: block;
     padding-top: 150px;
     width: 640px;
     height: 480px;
-    position: relative;
     float: left;
 }
 
 #save-div {
-    float: right;
-    /*margin-top: 15vh;*/
-    /*width: 21vw;*/
-    /*height: 31vh;*/
-    /*min-width: 640px;*/
-    /*min-height: 480px;*/
+    display: block;
     padding-top: 150px;
+    padding-right: 25%;
     width: 640px;
     height: 480px;
-    border: 1px solid #1186CC;
-    box-shadow: 7px 7px 10px -5px rgba(107,107,107,1);
+    float: right;
 }
 
-#snap, #save {
+#button-div {
+    display: block;
+    position: absolute;
+    padding-left: 14.5%;
+    float: bottom;
+    width: 30%;
+    height: 30%;
+}
+
+#snap, #upload, #save {
     width: 7vw;
     border: 2px solid #1186CC;
     background: none;
@@ -290,13 +317,7 @@ footer {
     text-align: center;
 }
 
-script {
-    text-align: center;
-    font-family: 'Lobster Two', cursive;
-}
-
 #selected_filter{
-    position: absolute;
     top: 0;
     right: 0;
     z-index: 500;

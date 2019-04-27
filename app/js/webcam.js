@@ -1,112 +1,127 @@
-window.onload = function() {
-    // Normalize the letious vendor prefixed versions of getUserMedia.
-    let video = document.getElementById('video');
-    let canvas = document.getElementById('image');
-    let context = canvas.getContext('2d');
-    let save_to_server = document.getElementById('snap');
-    if (navigator.mediaDevices.getUserMedia) {
-        // Request the camera.
-        navigator.mediaDevices.getUserMedia({video: true})
-            .then(function (stream) {
-                video.srcObject = stream;
-            })
-            .catch(function () {
-                console.log("Une erreur s'est produite.");
-            });
+// Global Vars
 
-    } else {
-        alert('Votre navigateur ne supporte pas cette application');
-    }
-    document.getElementById('snap').addEventListener('click', function () {
-        context.drawImage(video, 0, 0, 301, 170);
+let width = 640,
+    height = 480,
+    streaming = false;
+
+// DOM Elements
+const video =  document.getElementById('video');
+const canvas =  document.getElementById('image');
+const photos =  document.getElementById('photos');
+let filters =  document.getElementsByClassName('cam_filters');
+const snapbtn =  document.getElementById('snap');
+const uploadbtn =  document.getElementById('upload');
+const savebtn =  document.getElementById('save');
+
+// Get Media Stream
+navigator.mediaDevices.getUserMedia({video: true, audio: false})
+    .then(function (stream) {
+        // Link to the video source
+        video.srcObject = stream ;
+    })
+    .catch(function (err) {
+        console.log('Error: ${err}')
     });
-    save_to_server.addEventListener('click', function (e) {
-        var xhr = new XMLHttpRequest();
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    });
-};
 
-function addIcon(e) {
-    let canvas = document.getElementById("image");
-    let context = canvas.getContext('2d');
-    let img = new Image();
+// Play when ready
+// video.addEventListener('canplay', function (e) {
+//     if(!streaming) {
+//     // Set video / canvas height
+//     height = video.videoHeight / (video.videoWidth / width);
+//
+//     video.setAttribute('width', width);
+//     // video.setAttribute('heigth', heigth);
+//     canvas.setAttribute('width', width);
+//     // canvas.setAttribute('heigth', heigth);
+//
+//     streaming = true;
+//     }
+// }, false);
 
-    document.getElementById("video-div").appendChild(img);
-    if (document.getElementById("selected_filter")) {
-        document.getElementById("selected_filter").remove();
+// Photo button event
+snapbtn.addEventListener('click', function (e) {
+    takePicture();
+
+    e.preventDefault();
+}, false);
+
+// Filter event
+
+console.log(filters);
+
+function addFilter(target) {
+    let tag = document.getElementById("filter");
+    let img = new Image(640, 480);
+
+    img.src = target.src;
+    if (tag.childNodes[0] !== undefined) {
+        tag.removeChild(tag.childNodes[0]);
     }
-    img.id = "selected_filter";
-    img.src = e.src;
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    context.drawImage(img, 0, 0, img.width, img.height);
-    img.src = canvas.toDataURL("image/png");
+    tag.appendChild(img);
 }
 
-// function importImage() {
-//     let file = document.getElementById("uploaded_file");
-//     let input = file.files[0];
-//     let reader = new FileReader();
-//     let img = new Image();
-//     let tmp = new Image();
-//
-//     if (input == null) {
-//         alert("You must upload a picture before making a collage");
-//         return;
-//     }
-//     reader.onload = function (e) {
-//         tmp.src = e.target.result;
-//         let canvas = document.createElement("canvas");
-//         let context = canvas.getContext("2d");
-//         canvas.width = 640;
-//         canvas.height = 480;
-//         context.fillRect(0, 0, 640, 480);
-//         context.drawImage(tmp, 0, 0, 640, 480);
-//         document.getElementById("output").src = canvas.toDataURL("image/png");
-//     };
-//     reader.readAsDataURL(input);
-// }
-//
-// function takePicture() {
-//     let div = document.createElement("div");
-//     var aside = document.getElementById("aside");
-//     let canvas = document.createElement("canvas");
-//     let context = canvas.getContext('2d');
-//     let cpy = document.getElementById("selected_icon");
-//     let button = document.createElement("button");
-//     let hide = document.createElement("input");
-//     let src = document.getElementById("output");
-//     let img = new Image();
-//     let icon = new Image();
-//
-//     if (cpy == null) {
-//         alert("You must choose a miniatures before taking a picture");
-//         return;
-//     }
-//     aside.append(div);
-//     div.append(canvas, hide, button);
-//     hide.append(img, icon);
-//     hide.setAttribute("type", "hidden");
-//     icon.src = cpy.src;
-//     div.className = "mini";
-//     button.innerText = "upload picture";
-//     button.id = "add_button";
-//     canvas.width = 640;
-//     canvas.height = 480;
-//     context.fillRect(0, 0, 640, 480);
-//     context.drawImage(src, 0, 0, 640, 480);
-//     img.src = canvas.toDataURL("image/png");
-//     context.drawImage(icon, 0, 0, icon.width, icon.height);
-//     button.onclick = function () {
-//         let request = "img=" + img.src + "\n&icon=" + icon.src;
-//         var xhr = new XMLHttpRequest();
-//         xhr.onreadystatechange = function () {
-//             if (this.readyState === 4 && this.status === 200) {
-//                 alert(this.responseText);
-//             }
-//         };
-//         xhr.open("POST", "/add_picture");
-//         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-//         xhr.send(request);
-//     };
-// }
+Array.from(filters).forEach(filter => {
+    filter.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        console.log(filter);
+        // Set filter to chosen element
+        filters = e.target.value;
+
+        // Set filter to video
+        video.style.filter = filters;
+
+        addFilter(filter);
+
+    });
+    }
+);
+
+function takePicture() {
+    // Create canvas
+    // const canvas = document.getElementById('canvas-vid');
+    // const ctx = canvas.getContext('2d');
+    // if(width && height) {
+    //     // Set canvas proportions
+    //     canvas.width = width;
+    //     canvas.height = height;
+    //
+    //     // Draw img (snap)
+    //     ctx.drawImage(video, 0, 0, width, height);
+    //
+    //     // Create image from canvas
+    //     const imgUrl = canvas.toDataURL('image/png');
+    //     console.log(imgUrl);
+    //
+    //     // Create img element
+    //     const img = document.createElement('img');
+    //
+    //     // Set img src
+    //     img.setAttribute('src', imgUrl);
+    //
+    //     // Add image to photos
+    //     photos.appendChild(img);
+    // }
+    // const
+    let canvas = document.createElement("canvas");
+    let context = canvas.getContext('2d');
+    let photos = document.getElementById("photos");
+    let photo = new Image(640, 480);
+    let montage = document.createElement("div");
+    let filter = new Image(640, 480);
+
+    montage.setAttribute('class', 'mont');
+    photo.setAttribute('id', 'image');
+    filter.setAttribute('id', 'image');
+    filter.src = document.getElementById('filter').childNodes[0].src;
+    canvas.width = 640;
+    canvas.height = 480;
+    context.drawImage(video, 0, 0, 640, 480);
+    photo.src = canvas.toDataURL('image/png');
+
+
+    montage.appendChild(photo);
+    montage.appendChild(filter);
+
+    photos.appendChild(montage);
+}

@@ -23,6 +23,7 @@
             <i class="fas fa-check-square"></i>
             <input type="password" placeholder="Confirmation mot de passe" name="confirmpwd"  id="confirmpwd" required>
         </div>
+        <a href="login.php" id="login">Déjà inscrit ?</a>
         <button type="submit" class="btn">S'inscrire</button>
     </form>
 </div>
