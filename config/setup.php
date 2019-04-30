@@ -26,15 +26,14 @@ try {
     // use exec() because no results are returned
     $conn->exec($sql);
 
+
     $sql = "CREATE TABLE IF NOT EXISTS pictures (
-    usr_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    usr_username TEXT (25) NOT NULL,
-    pictures TEXT NOT NULL,
-    likes INT (10) DEFAULT '0',
-    liker VARCHAR(25),
-    comments TEXT,
-    com_ownr TEXT (25)
+    id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    login TEXT (25) NOT NULL,
+    picture TEXT (50) NOT NULL,
+    likes TEXT (25) NOT NULL
     )";
+
     $conn->exec($sql);
 
 } catch (PDOException $e) {

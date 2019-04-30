@@ -1,13 +1,5 @@
-
-// DOM Elements
+const button = document.querySelector('button');
 const video =  document.getElementById('video');
-const canvas =  document.getElementById('image');
-// const photos =  document.getElementById('photos');
-let filters =  document.getElementsByClassName('cam_filters');
-const snapbtn =  document.getElementById('snap');
-// const uploadbtn =  document.getElementById('upload');
-// const savebtn =  document.getElementById('save');
-
 // Get Media Stream
 navigator.mediaDevices.getUserMedia({video: true, audio: false})
     .then(function (stream) {
@@ -18,64 +10,74 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
         console.log('Error: ${err}')
     });
 
-// Photo button event
-snapbtn.addEventListener('click', function (e) {
-    takePicture();
 
-    e.preventDefault();
-}, false);
+function take() {
+    var ctx = document.getElementById('canvas_montage');
+    var ctx3 = document.getElementById('filter');
+    var ctx4 = document.getElementById('bg');
+    ctx.width = video.videoWidth;
+    ctx.height = video.videoHeight;
+    ctx.getContext('2d').drawImage(video, 0, 0, ctx.width, ctx.height);
+    ctx.getContext('2d').drawImage(ctx4, 0, 0, ctx.width, ctx.height);
+    ctx.getContext('2d').drawImage(ctx3, 0, 0, ctx.width, ctx.height);
+    document.getElementById("save").disabled = false;
+    document.getElementById("save").style.cursor = "pointer";
+    document.getElementById("save").style.opacity = "1";
+};
 
-// Filter event
-
-function addFilter(target) {
-    let tag = document.getElementById("filter");
-    let img = new Image(640, 480);
-
-    img.src = target.src;
-    if (tag.childNodes[0] !== undefined) {
-        tag.removeChild(tag.childNodes[0]);
-    }
-    tag.appendChild(img);
+function draw1(filtername) {
+    var img = new Image();
+    img.src = filtername;
+    img.onload = drawfilter;
 }
 
-Array.from(filters).forEach(filter => {
-    filter.addEventListener('click', function (e) {
-        e.preventDefault();
+function drawfilter() {
+    var canvas = document.getElementById('filter');
+    canvas.width = this.width;
+    canvas.height = this.height;
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(this, 0,0);
+    document.getElementById("snap").disabled = false;
+    document.getElementById("snap").style.cursor = "pointer";
+    document.getElementById("snap").style.opacity = "1";
+}
 
-        // Set filter to chosen element
-        filters = e.target.value;
 
-        // Set filter to video
-        video.style.filter = filters;
+function UploadPic() {
+    var canvas = document.getElementById('canvas_montage');
+    var dataURL = canvas.toDataURL();
+    document.getElementById('hidden_data').value = dataURL;
+    var fd = new FormData(document.forms["form1"]);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', "../controllers/pictureCo.php");
 
-        addFilter(filter);
 
-    });
+    xhr.send(fd);
+
+    alert('Image ajoutée avec succès :)');
+
+
+    window.location.reload();
+}
+
+document.getElementById('upload').onchange = function(e) {
+    if (this.files[0] && this.files[0].type.includes('image')) {
+        var img = new Image();
+        img.onload = draw;
+        img.onerror = failed;
+        img.src = URL.createObjectURL(this.files[0]);
+    } else {
+        alert('Fichiers autorisés: *.png - *.jpeg - *.gif');
     }
-);
-
-function takePicture() {
-
-    let canvas = document.createElement("canvas");
-    let context = canvas.getContext('2d');
-    let photos = document.getElementById("photos");
-    let photo = new Image(640, 480);
-    let montage = document.createElement("div");
-    let filter = new Image(640, 480);
-
-    montage.setAttribute('class', 'mont');
-    photo.setAttribute('id', 'image');
-    filter.setAttribute('id', 'image');
-    filter.src = document.getElementById('filter').childNodes[0].src;
-    canvas.width = 640;
-    canvas.height = 480;
-    filter.width = 0.3 * canvas.width;
-    filter.height = 0.3 * canvas.height;
-    context.drawImage(video, 0, 0, 640, 480);
-    photo.src = canvas.toDataURL('image/png');
-
-    montage.appendChild(photo);
-    montage.appendChild(filter);
-
-    photos.appendChild(montage);
+};
+function draw() {
+    var canvas = document.getElementById('bg');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(this, 0,0, canvas.width, canvas.height);
+}
+function failed() {
+    console.error("The provided file couldn't be loaded as an Image media");
 }

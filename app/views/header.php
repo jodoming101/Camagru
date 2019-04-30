@@ -13,10 +13,10 @@
 </head>
 <div class="header">
     <h2 class="logo">Camagru</h2>
-    <input type="checkbox" id="chk">
-    <label for="chk" class="show-menu-btn">
-        <i class="fas fa-ellipsis-h"></i>
-    </label>
+<!--    <input type="checkbox" id="chk">-->
+<!--    <label for="chk" class="show-menu-btn">-->
+<!--        <i class="fas fa-ellipsis-h"></i>-->
+<!--    </label>-->
 
     <ul class="menu">
         <li class="h_gallery">
@@ -49,7 +49,7 @@
         }
         ?>
     </ul>
-    <label for="chk" class="hide-menu-btn">
-        <i class="fas fa-times"></i>
-    </label>
+<!--    <label for="chk" class="hide-menu-btn">-->
+<!--        <i class="fas fa-times"></i>-->
+<!--    </label>-->
 </div>
