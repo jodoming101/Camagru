@@ -4,15 +4,7 @@
     padding: 0;
 }
 
-body {
-    position: fixed;
-    margin: 0;
-    padding: 0;
-    background: url("../../assets/img/background.jpg") no-repeat center;
-    height: 100%;
-    width: 100%;
-    background-size: auto;
-}
+/* Main view styling */
 
 .header {
     height: 10vh;
@@ -36,12 +28,6 @@ body {
     list-style-type: none;
 }
 
-#forgot, #register, #login, #logp {
-    color: rgba(107,107,107,1);
-    text-decoration: none;
-    font-size: smaller;
-}
-
 .menu a {
     color: #ffffff;
     text-decoration: none;
@@ -49,61 +35,40 @@ body {
     transition: 0.4s;
 }
 
-.show-menu-btn, .hide-menu-btn {
-    transition: 0.4s;
-    font-size: 30px;
-    cursor: pointer;
-    display: none;
+body {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    background: url("../../assets/img/background.jpg") no-repeat center;
+    height: 100%;
+    width: 100%;
+    background-size: auto;
 }
 
-.show-menu-btn {
-    float: right;
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 2vh;
+    min-height: 15px;
+    width: 100%;
+    background-color: rgba(17, 134, 204, 0.7);
+    color: white;
+    padding-top: 1vh;
+    padding-bottom: 0.5vh;
+    font-family: 'Lobster Two', cursive;
+    font-size: 1.5vh;
+    min-font-size: 13px;
+    text-align: center;
 }
 
-.show-menu-btn i {
-    line-height: 10vh;
-}
+/* Register - Login - Profile - Forgotten Pwd */
 
-.menu a:hover,
-.show-menu-btn:hover,
-.hide-menu-btn:hover {
-    color: #023c4b;
-}
-
-#chk {
-    position: absolute;
-    visibility: hidden;
-    z-index: -1111;
-}
-
-@media screen and (max-width: 800px) {
-    .show-menu-btn, .hide-menu-btn {
-        display: block;
-    }
-    .menu {
-        position: fixed;
-        width: 50vw;
-        height: 100vh;
-        background: rgba(17, 134, 204, 0.7);
-        left: 0;
-        top: 0;
-        text-align: center;
-        padding: 80px 0;
-        line-height: normal;
-        transition: 0.7s;
-    }
-    .menu a {
-        display: block;
-        padding: 20px;
-    }
-    .hide-menu-btn {
-        position: absolute;
-        top: 40px;
-        right: 40px;
-    }
-    #chk:checked ~ .menu {
-        right: 0;
-    }
+#forgot, #register, #login, #logp {
+    color: rgba(107,107,107,1);
+    text-decoration: none;
+    font-size: smaller;
 }
 
 .login-box {
@@ -187,6 +152,8 @@ body {
     margin: 12px 0;
 }
 
+/*Snap Page style*/
+
 .main_snap {
     /*width: 100%;*/
     display: flex;
@@ -264,7 +231,7 @@ body {
     top: 0;
     left: 15px;
     margin-top: 7%;
-    margin-right: 30px;
+    margin-right: 30%;
     width: 640px;
     height: 480px;
     border: 1px solid #1186CC;
@@ -302,19 +269,3 @@ body {
     margin: 70vh 0.5vw;
 }
 
-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    height: 2vh;
-    min-height: 15px;
-    width: 100%;
-    background-color: rgba(17, 134, 204, 0.7);
-    color: white;
-    padding-top: 1vh;
-    padding-bottom: 0.5vh;
-    font-family: 'Lobster Two', cursive;
-    font-size: 1.5vh;
-    min-font-size: 13px;
-    text-align: center;
-}
