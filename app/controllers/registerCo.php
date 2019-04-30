@@ -97,7 +97,7 @@ function emailActivation ($username, $email, $key)
     $message = 'Bienvenue sur Camagru ' . $username . '!
     Pour activer votre compte, veuillez cliquer sur le lien ci dessous
     ou le copier puis le coller dans la barre d\'addresse de votre navigateur.
-    http://localhost:8008/app/controllers/activation.php?username=' . urlencode($username) . '&key=' . urlencode($key) . '
+    http://localhost:8008/Camagru/app/controllers/activation.php?username=' . urlencode($username) . '&key=' . urlencode($key) . '
     ---------------
     Ce mail est généré automatiquement. Merci de ne pas y répondre.';
     mail($email, $subject, $message, $header);

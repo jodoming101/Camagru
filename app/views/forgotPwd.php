@@ -1,4 +1,4 @@
-<html>
+<html lang="fr">
 <?php include_once 'header.php'; ?>
 
 <body>
@@ -10,10 +10,7 @@
             <input type="text" placeholder="Nom d'utilisateur" name="username" id="username">
         </div>
 
-<!--        <div class="textbox">-->
-<!--            <i class="fas fa-envelope"></i>-->
-<!--            <input type="email" placeholder="Adresse email" name="email" id="email">-->
-<!--        </div>-->
+        <a href="login.php" id="logp">Retour à la page de connexion</a>
 
         <button type="submit" class="btn">Envoyer</button>
     </form>
