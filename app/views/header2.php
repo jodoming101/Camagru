@@ -31,15 +31,15 @@ if (isset($_SESSION['username']))
                 echo "
                 <li><a href=\"snap.php\"><i class=\"material-icons left\">add_a_photo</i>Snap</a></li>
                 <li><a href=\"profile.php\"><i class=\"material-icons left\">account_circle</i>Profile</a></li>
-                <li><a href=\"photogallery.php\"><i class=\"material-icons left\">collections</i>Gallery</a></li>
-                <li><a href=\"../controllers/logoutCo.php\"><i class=\"material-icons left\">power_settings_new</i>Log out</a></li>
+                <li><a href=\"photogallery.php\"><i class=\"material-icons left\">collections</i>Gallerie</a></li>
+                <li><a href=\"../controllers/logoutCo.php\"><i class=\"material-icons left\">power_settings_new</i>Déconnexion</a></li>
                 ";
             }
             else
                 echo "
-                <li><a href=\"gallery.php\"><i class=\"material-icons left\">collections</i>Gallery</a></li>
-                <li><a href=\"login.php\"><i class=\"material-icons left\">person</i>Login</a></li>
-                <li><a href=\"register.php\"><i class=\"material-icons left\">person_add</i>Register</a></li>
+                <li><a href=\"gallery.php\"><i class=\"material-icons left\">collections</i>Gallerie</a></li>
+                <li><a href=\"login.php\"><i class=\"material-icons left\">person</i>Connexion</a></li>
+                <li><a href=\"register.php\"><i class=\"material-icons left\">person_add</i>Inscription</a></li>
                 ";
 
             ?>
@@ -58,15 +58,15 @@ if (isset($_SESSION['username']))
                 echo "
                 <a href=\"snap.php\"><i class=\"material-icons left\">add_a_photo</i>Snap</a>
                 <a href=\"profile.php\"><i class=\"material-icons left\">account_circle</i>Profile</a>
-                <a href=\"photogallery.php\"><i class=\"material-icons left\">collections</i>Gallery</a>
-                <a href=\"../controllers/logoutCo.php\"><i class=\"material-icons left\">power_settings_new</i>Log out</a>
+                <a href=\"photogallery.php\"><i class=\"material-icons left\">collections</i>Gallerie</a>
+                <a href=\"../controllers/logoutCo.php\"><i class=\"material-icons left\">power_settings_new</i>Déconnexion</a>
                 ";
             }
             else
                 echo "
-                <a href=\"gallery.php\"><i class=\"material-icons left\">collections</i>Gallery</a>
-                <a href=\"login.php\"><i class=\"material-icons left\">person</i>Login</a>
-                <a href=\"register.php\"><i class=\"material-icons left\">person_add</i>Register</a>
+                <a href=\"gallery.php\"><i class=\"material-icons left\">collections</i>Gallerie</a>
+                <a href=\"login.php\"><i class=\"material-icons left\">person</i>Connexion</a>
+                <a href=\"register.php\"><i class=\"material-icons left\">person_add</i>Inscription</a>
                 ";
 
             ?>

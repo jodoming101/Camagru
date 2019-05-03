@@ -1,5 +1,5 @@
 <html lang="fr">
-<?php include_once 'header.php'; ?>
+<?php include_once 'header2.php'; ?>
 
 <body>
 <div class="login-box">
