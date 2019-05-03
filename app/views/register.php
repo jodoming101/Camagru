@@ -1,5 +1,9 @@
 <html lang="fr">
-<?php include_once 'header.php'; ?>
+<?php include_once 'header2.php';
+if (isset($_SESSION['username']))
+    header('Location: snap.php');
+
+?>
 <body>
 <div class="login-box">
     <h1>Inscription</h1>

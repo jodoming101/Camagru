@@ -31,4 +31,18 @@ class Picture extends Model
         return ($data);
     }
 
+    public function GetAllPicture($offset)
+    {
+        $data = $this->_database->getManyData("SELECT picture 
+            FROM pictures LIMIT 6 OFFSET $offset", array());
+        return ($data);
+    }
+
+    public function CountPage(){
+        $data = $this->_database->getManyData("SELECT picture 
+            FROM pictures", array());
+        $count = count($data);
+        return ($count);
+    }
+
 }

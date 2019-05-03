@@ -18,6 +18,7 @@ if (!isset($_SESSION['username'])) {
         <img src="../assets/img/filters/dallabill.png" class="cam_filters" alt="filtre" onclick="draw1(this.src)">
         <img src="../assets/img/filters/easterbunny.png" class="cam_filters" alt="filtre" onclick="draw1(this.src)">
         <img src="../assets/img/filters/kitten.png" class="cam_filters" alt="filtre" onclick="draw1(this.src)">
+        <img src="../assets/img/filters/geisha.png" class="cam_filters" alt="filtre" onclick="draw1(this.src)">
     </aside>
     <div class="main_snap">
         <div class="montage" id="montage">
@@ -27,7 +28,7 @@ if (!isset($_SESSION['username'])) {
                 <canvas id="bg" class="filter_canvas"></canvas>
                 <canvas id="filter" class="filter_canvas"></canvas>
             </div>
-                <h2 class="title-form">Choisir le fond</h2>
+                <h2 class="title-form">Choissez un filtre</h2>
                 <input type="file" id="upload" name="fichier" size="30000" accept="image">
             <button style="cursor: not-allowed" type="submit" class="btn2" id="snap" onclick="take()" disabled>Prendre la photo</button>
 
@@ -37,7 +38,7 @@ if (!isset($_SESSION['username'])) {
             <div id="photos">
                 <canvas id="canvas_montage" class=""></canvas>
             </div>
-            <button style="cursor: not-allowed" type="submit" class="btn2" id="save" onclick="UploadPic()" disabled>Sauvegarde</button>
+            <button style="cursor: not-allowed" type="submit" class="btn2" id="save" onclick="UploadPic()" disabled>Sauvegarder</button>
         </div>
         <div id="button-div">
 

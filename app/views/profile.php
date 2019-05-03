@@ -23,6 +23,11 @@
             <input type="password" placeholder="Nouveau mot de passe" name="nw_pwd">
         </div>
 
+        <div class="textbox">
+            <i class="fas fa-bell"></i>
+            <label for="notifications" class="profile-label">Autoriser les notifications<input type="checkbox" checked></label>
+        </div>
+
         <button type="submit" class="btn">Changer</button>
     </form>
     </div>

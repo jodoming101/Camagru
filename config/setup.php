@@ -31,7 +31,10 @@ try {
     id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     login TEXT (25) NOT NULL,
     picture TEXT (50) NOT NULL,
-    likes TEXT (25) NOT NULL
+    likes TEXT (25) NOT NULL,
+    liker TEXT(25) COLLATE utf8_unicode_ci,
+    comments TEXT COLLATE utf8_unicode_ci,
+    author TEXT COLLATE utf8_unicode_ci
     )";
 
     $conn->exec($sql);

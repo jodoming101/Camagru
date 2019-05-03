@@ -79,5 +79,5 @@ function draw() {
     ctx.drawImage(this, 0,0, canvas.width, canvas.height);
 }
 function failed() {
-    console.error("The provided file couldn't be loaded as an Image media");
+    console.error("Le fichier n'a pas pu être chargé.");
 }

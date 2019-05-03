@@ -37,3 +37,17 @@ function GetPic(){
     $res = $Picture->GetPicture($_SESSION['username']);
     return $res;
 }
+
+function GetAllPic($offset){
+    $db = new Database();
+    $Picture = new Picture($db);
+    $res = $Picture->GetAllPicture($offset);
+    return $res;
+}
+
+function GetCount(){
+    $db = new Database();
+    $Picture = new Picture($db);
+    $res = $Picture->CountPage();
+    return $res;
+}
