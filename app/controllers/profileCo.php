@@ -53,5 +53,6 @@ if (isset($_SESSION["username"])) {
             echo "<script>window.location.replace('../views/profile.php')</script>";
         }
     }
+    //if (!isset($_POST[]))
     echo "<script>window.location.replace('../controllers/logoutCo.php')</script>";
 }

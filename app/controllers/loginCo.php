@@ -18,6 +18,7 @@ if ((isset($username) && !empty($username)) &&
         if ($data['usr_vfd'] == 1)
         {
             $username = $data["usr_username"];
+            $_SESSION['id'] = $data['usr_id'];
             $_SESSION["username"] = $username;
             $msg = "Bienvenue " . $_SESSION["username"] . " !";
             echo "<script type='text/javascript'> confirm('$msg');

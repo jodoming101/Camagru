@@ -58,7 +58,7 @@ class User extends Model
 
     public function confirmAccount($username)
     {
-        $this->_database->insertData("UPDATE users SET usr_vfd = 1 WHERE usr_username = :username",
+        $this->_database->insertData("UPDATE users SET usr_vfd = 2 WHERE usr_username = :username",
             array(":username" => $username));
     }
 
@@ -80,4 +80,8 @@ class User extends Model
             array(":old" => $oldUsername, ":new" => $username));
         $_SESSION["username"] = $username;
     }
+
+//    public function AcceptNotif() {
+//        $this->
+//    }
 }

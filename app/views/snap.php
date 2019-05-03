@@ -53,10 +53,17 @@ if (!isset($_SESSION['username'])) {
         $res = GetPic();
         foreach ($res as $k => $v) {
             $pic = $v['picture'];
+            $id_pic = $v['id'];
             echo "
             <div class=\"card_image\">
                 <div style=\"background-image: url('$pic')\" class=\"card_photo\"></div>
+                <form method='post' action='../controllers/pictureCo.php'>
+                <input type='hidden' name='id_pic' value='$pic'>
+                <button type='submit' class=\"waves-effect waves-light btn2 btn_del\"><i class=\"material-icons left\">delete</i>Supprimer</button>
+                </form>
             </div>
+            
+            
             ";
         }
         ?>

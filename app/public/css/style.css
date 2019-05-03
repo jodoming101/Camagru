@@ -142,6 +142,28 @@ footer {
     margin: 12px 0;
 }
 
+.btn2 {
+    font-family: inherit;
+    border: 2px solid #1186CC;
+    background: none;
+    color: #1186CC;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 12px 0;
+    padding: 5px;
+}
+
+.btn2:hover {
+    width: 350px;
+    background: #1186CC;
+    border: 2px solid #1186CC;
+    color: white;
+    padding: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 12px 0;
+}
+
 /*Snap Page style*/
 
 .main_snap {
@@ -342,6 +364,7 @@ footer {
     margin: 30px;
     width: 420px;
     height: 300px;
+    position: relative;
 }
 
 @media screen and (max-width: 800px) {
@@ -421,4 +444,12 @@ footer {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.btn_del{
+    position: absolute;
+    bottom: 10px;
+    right: 40px;
+    width: 140px;
+    background-color: white;
 }
