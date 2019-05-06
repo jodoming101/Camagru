@@ -53,6 +53,16 @@ if (isset($_SESSION["username"])) {
             echo "<script>window.location.replace('../views/profile.php')</script>";
         }
     }
-    //if (!isset($_POST[]))
-    echo "<script>window.location.replace('../controllers/logoutCo.php')</script>";
+    $username = $_SESSION["username"];
+    $chkd = isset($_POST["notifs"]) ? "Yes" : "No";
+    $return = $user->getNotifInfo($username);
+    if ($chkd == "No") {
+            $user->rejectNotif($username);
+        echo "<script>alert('Les notifications ont été désactivées.')</script>";
+        echo "<script>window.location.replace('../views/profile.php')</script>";
+    } else if ($chkd == "Yes") {
+            $user->acceptNotif($username);
+        echo "<script>alert('Les notifications ont été activées.')</script>";
+        echo "<script>window.location.replace('../views/profile.php')</script>";
+    }
 }

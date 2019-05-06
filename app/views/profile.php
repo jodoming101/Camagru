@@ -25,9 +25,10 @@
 
         <div class="textbox">
             <i class="fas fa-bell"></i>
-            <label for="notifications" class="profile-label">Autoriser les notifications<input type="checkbox" checked></label>
+            <label for="notifications" class="profile-label">Activer les notifications?
+                <input type="checkbox" name="notifs" value="Yes" checked>
+            </label>
         </div>
-
         <button type="submit" class="btn">Changer</button>
     </form>
     </div>

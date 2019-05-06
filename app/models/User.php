@@ -49,6 +49,13 @@ class User extends Model
         return ($data);
     }
 
+    public function getIdInfoCom($id)
+    {
+        $data = $this->_database->getData("SELECT usr_id, usr_username, usr_email, usr_notif 
+            FROM users WHERE usr_id = :id", array(":id" => $id));
+        return ($data);
+    }
+
     public function getConfirmationKey($username)
     {
         $confirmationKey = $this->_database->getData("SELECT usr_key FROM users WHERE usr_username = :username",
@@ -58,7 +65,7 @@ class User extends Model
 
     public function confirmAccount($username)
     {
-        $this->_database->insertData("UPDATE users SET usr_vfd = 2 WHERE usr_username = :username",
+        $this->_database->insertData("UPDATE users SET usr_vfd = 1 WHERE usr_username = :username",
             array(":username" => $username));
     }
 
@@ -81,7 +88,20 @@ class User extends Model
         $_SESSION["username"] = $username;
     }
 
-//    public function AcceptNotif() {
-//        $this->
-//    }
+    public function getNotifInfo($username)
+    {
+        $data = $this->_database->getData("SELECT usr_notif FROM users WHERE usr_username = :username",
+            array(":username" => $username));
+        return ($data);
+    }
+
+    public function rejectNotif($username) {
+        $this->_database->insertData("UPDATE users SET usr_notif = 0 WHERE usr_username = :username",
+            array(":username" => $username));
+    }
+
+    public function acceptNotif($username) {
+        $this->_database->insertData("UPDATE users SET usr_notif = 1 WHERE usr_username = :username",
+            array(":username" => $username));
+    }
 }

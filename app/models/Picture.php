@@ -77,4 +77,17 @@ class Picture extends Model
         );
     }
 
+    public function GetId($picture)
+    {
+        $data = $this->_database->getManyData("SELECT picture, login 
+            FROM pictures WHERE picture = :id AND login = :usr", array(":id" => $picture, ":usr" => $_SESSION['id']));
+        return ($data);
+    }
+
+    public function getIdInfo($username)
+    {
+        $data = $this->_database->getData("SELECT usr_username, usr_email, usr_notif 
+            FROM users WHERE usr_id = :username", array(":username" => $username));
+        return ($data);
+    }
 }

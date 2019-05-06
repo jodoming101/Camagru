@@ -143,7 +143,7 @@ footer {
 }
 
 .btn2 {
-    font-family: inherit;
+    font-family: 'Lobster Two', cursive;
     border: 2px solid #1186CC;
     background: none;
     color: #1186CC;
@@ -271,6 +271,43 @@ footer {
         padding-left: 0;
         height: 600px;
     }
+
+    .pagination {
+        margin-top: 3rem;
+        margin-bottom: 7rem;
+    }
+
+    .btn_del{
+        position: absolute;
+        bottom: 5px;
+        right: 30px;
+        width: 120px;
+        font-size: 1em;
+        background-color: white;
+    }
+
+    .btn2 {
+        font-family: 'Lobster Two', cursive;
+        border: 2px solid #1186CC;
+        background: none;
+        color: #1186CC;
+        font-size: 1rem;
+        cursor: pointer;
+        margin: 12px 0;
+        padding: 5px;
+    }
+
+    .btn2:hover {
+        width: 350px;
+        background: #1186CC;
+        border: 2px solid #1186CC;
+        color: white;
+        padding: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin: 12px 0;
+    }
+
 }
 
 .cam_filters {
@@ -385,6 +422,10 @@ footer {
     #filters {
         margin-left: 0 !important;
     }
+    .gallerycard{
+        margin-bottom: 100px !important;
+    }
+
 }
 
 .card_photo {
@@ -452,4 +493,14 @@ footer {
     right: 40px;
     width: 140px;
     background-color: white;
+}
+
+.pagination {
+    position: relative;
+    margin-top: 8rem;
+}
+
+.comment {
+    margin-top: 5px;
+    margin-right: 20px;
 }

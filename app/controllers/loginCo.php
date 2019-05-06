@@ -15,7 +15,7 @@ if ((isset($username) && !empty($username)) &&
         echo "<script type='text/javascript'> confirm('Le nom d\'utilisateur est inconnu.');
                        window.location.replace('../views/login.php')</script>";
     else if (password_verify($password, $data['usr_pwd']) == true) {
-        if ($data['usr_vfd'] == 1)
+        if ($data['usr_vfd'] >= 1)
         {
             $username = $data["usr_username"];
             $_SESSION['id'] = $data['usr_id'];

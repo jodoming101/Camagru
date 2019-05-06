@@ -5,9 +5,11 @@ if (!isset($_SESSION['username']))
     header('Location: gallery.php');
 if (isset($_GET['page'])) {
     $count = GetCount();
-    $page = round($count / 6 + 1);
+    $page =  ceil($count / 6);
     if ($_GET['page'] > $page)
         header('location: photogallery.php?page=1');
+    if ($_GET['page'] < 1)
+        header('location: snap.php');
 }
 if (!isset($_GET['page']))
     header('location: photogallery.php?page=1');
@@ -38,7 +40,7 @@ if (!isset($_GET['page']))
                     $btnlike = "<button type='submit' class=\"waves-light btn2 btn_del\"><i class=\"fas fa-heart-broken\"></i>Je n'aime pas</button>";
                 }
                 echo "
-            <div class='col s12 m4 l4'>
+            <div style='margin-bottom: 50px;' class='col s12 m4 l4 gallerycard'>
                 <div class=\"card_image\">
                     <div style=\"background-image: url('$pic')\" class=\"card_photo\"></div>
                     <form method='post' action='../controllers/pictureCo.php'>
@@ -47,9 +49,9 @@ if (!isset($_GET['page']))
                     </form>
                     <div class='comment'>
                         <form method='post' id='comment' action='../controllers/pictureCo.php'>
-                            <textarea rows='4' cols='50' name='comment' placeholder='Votre commentaire'></textarea>
+                            <textarea rows='4' cols='30' name='comment' placeholder='Votre commentaire'></textarea>
                             <input type='hidden' name='picture' value='$pic'>
-                            <button type='submit' class='btn2'><i class=\"fas fa-comment\">Commenter</i></button>
+                            <button type='submit' class='btn2'><i class=\"fas fa-comment\">  Commenter</i></button>
                         </form>
                     </div>
                 </div>
@@ -62,7 +64,7 @@ if (!isset($_GET['page']))
             <?php
             $active = 'waves-effect';
             $count = GetCount();
-            $page = round ($count / 6 + 1);
+            $page =  ceil($count / 6);
             $i = 1;
             while ($i <= $page){
                 if (isset($_GET['page'])){

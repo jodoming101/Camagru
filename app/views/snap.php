@@ -16,9 +16,9 @@ if (!isset($_SESSION['username'])) {
     <body>
     <aside id="filters">
         <img src="../assets/img/filters/dallabill.png" class="cam_filters" alt="filtre" onclick="draw1(this.src)">
-        <img src="../assets/img/filters/easterbunny.png" class="cam_filters" alt="filtre" onclick="draw1(this.src)">
-        <img src="../assets/img/filters/kitten.png" class="cam_filters" alt="filtre" onclick="draw1(this.src)">
-        <img src="../assets/img/filters/geisha.png" class="cam_filters" alt="filtre" onclick="draw1(this.src)">
+        <img src="../assets/img/filters/lionsrugby.png" class="cam_filters" alt="filtre" onclick="draw1(this.src)">
+        <img src="../assets/img/filters/angrybirds.png" class="cam_filters" alt="filtre" onclick="draw1(this.src)">
+        <img src="../assets/img/filters/lourugby.png" class="cam_filters" alt="filtre" onclick="draw1(this.src)">
     </aside>
     <div class="main_snap">
         <div class="montage" id="montage">

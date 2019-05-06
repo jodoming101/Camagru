@@ -51,8 +51,8 @@ if (isset($_POST['like'])){
     $db = new Database();
     $Picture = new Picture($db);
     $id_usr = $_SESSION['id'];
-    $picture = $_POST['like'];
     $login = 0;
+    $picture = $_POST['like'];
     $likes = $_SESSION['id'];
     $Picture->AddPicture($login, $picture, $likes);
     header('Location: ../views/photogallery.php');
@@ -62,8 +62,8 @@ if (isset($_POST['dislike'])){
     $db = new Database();
     $Picture = new Picture($db);
     $id_usr = $_SESSION['id'];
-    $picture = $_POST['dislike'];
     $login = 0;
+    $picture = $_POST['dislike'];
     $likes = $_SESSION['id'];
     $Picture->DelLikePicture($login, $picture, $likes);
     header('Location: ../views/photogallery.php');
@@ -98,10 +98,23 @@ if (isset($_POST['comment'])){
     $com = htmlspecialchars($_POST["comment"],ENT_QUOTES, 'UTF-8');
     $author = $_SESSION["username"];
     $pic->AddComment($author, $picture, $com);
-//    NotifComment();
+    $res = $pic->GetId($picture);
+    $res2 = $pic->getIdInfo($res[0]['login']);
+    if ($res2['usr_notif'] == 1){
+        SendComment($res2['usr_email'], $res2['usr_username'], $author, $picture, $com);
+    }
     header('Location: ../views/photogallery.php');
+
 }
 
-function NotifComment() {
-
+function SendComment ($email, $username, $author, $picture, $com)
+{
+    $subject = "Camagru | Nouveau Commentaire";
+    $header = "From: no_reply@camagru.com";
+    $message = 'Bonjour ' . $username . '!
+    Votre photo ('. $picture . ') a été commentée par ' . $author . ' : ' . $com .'
+    
+    ---------------
+    Ce mail est généré automatiquement. Merci de ne pas y répondre.';
+    mail($email, $subject, $message, $header);
 }
